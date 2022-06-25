@@ -117,3 +117,4 @@ https://www.youtube.com/watch?v=vWSRWpOPHws&list=PLy7NrYWoggjzfAHlUusx2wuDwfCrmJ
 ## DOCKER VOLUMES
 
 https://www.youtube.com/watch?v=p2PH_YPCsis&list=PLy7NrYWoggjzfAHlUusx2wuDwfCrmJYcs&index=12
+https://www.youtube.com/watch?v=SBUCYJgg4Mk&list=PLy7NrYWoggjzfAHlUusx2wuDwfCrmJYcs&index=14
