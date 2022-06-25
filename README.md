@@ -17,6 +17,7 @@ https://medium.com/@kmdkhadeer/docker-get-started-9aa7ee662cea#:~:text=Docker%20
 - `docker ps -a` lists all containers wheather running or not running
 - `docker images` lists all available docker images
 - `docker stop container_id` stops the provided container
+- `docker start container_id` starts the provided container
 - `docker run -p6000:6379 redis` runs the redis container and binds it to the 6000 port of host machine with 6379 port of container
 - `docker run -p6000:6379 -d redis` runs the redis container and binds it to the 6000 port of host machine with 6379 port of container in detached mode
 - `docker run -p6000:6379 -d --name redis-new redis` creates new container with provided imags of redis and names it "redis-new"
