@@ -3,7 +3,9 @@
 Read basics from this link
 https://medium.com/@kmdkhadeer/docker-get-started-9aa7ee662cea#:~:text=Docker%20is%20a%20set%20of,other%20through%20well%2Ddefined%20channels.
 
-### DOCKER CHEAT SHEET - https://www.docker.com/wp-content/uploads/2022/03/docker-cheat-sheet.pdf
+### DOCKER CHEAT SHEET
+
+https://www.docker.com/wp-content/uploads/2022/03/docker-cheat-sheet.pdf
 
 ## DOCKER COMMANDS
 
@@ -29,14 +31,18 @@ https://medium.com/@kmdkhadeer/docker-get-started-9aa7ee662cea#:~:text=Docker%20
 - `docker logs container_id|container_name` prints logs of the provided container
 - `docker exec -it container_id|container_name /bin/bash` gives excess to the terminal for provided container
 
-## DOCKER V/S VIRTUAL MACHINE - https://www.youtube.com/watch?v=5GanJdbHlAA
+## DOCKER V/S VIRTUAL MACHINE
+
+https://www.youtube.com/watch?v=5GanJdbHlAA
 
 ## NETWORK COMMANDS
 
 - `docker network ls` - list all networks
 - `docker network network_name` - create new network with given name
 
-## NODE APP WITH DOCKER - https://www.youtube.com/watch?v=6YisG2GcXaw&list=PLy7NrYWoggjzfAHlUusx2wuDwfCrmJYcs&index=8
+## NODE APP WITH DOCKER
+
+https://www.youtube.com/watch?v=6YisG2GcXaw&list=PLy7NrYWoggjzfAHlUusx2wuDwfCrmJYcs&index=8
 
 when using any images like mongodb, you can pass environment variables as well for username and password, to do that checkout the description of the image you are using to create the conatainer
 
@@ -97,3 +103,17 @@ RUN mkdir -p /home/app                              // runs this command on the 
 COPY ./home/app                                 // copy current folder files to /home/app // this executes on the host
 CMD ["node", "server.js"]                       // entry command to run when container is created successfully
 ```
+
+This file has to be saved like "Dockerfile" name has to be exact same
+
+`docker build -t image_name:version directory_of_dockerfile` creates image file, takes in a image name, version and location of dockerfile
+
+Note: Whenver you make changes to the dockerfile you need to create a new image after that and create new container
+
+## CREATING PRIVATE REPOSITORY - DOCKER REGISTRY
+
+https://www.youtube.com/watch?v=vWSRWpOPHws&list=PLy7NrYWoggjzfAHlUusx2wuDwfCrmJYcs&index=11
+
+## DOCKER VOLUMES
+
+https://www.youtube.com/watch?v=p2PH_YPCsis&list=PLy7NrYWoggjzfAHlUusx2wuDwfCrmJYcs&index=12
