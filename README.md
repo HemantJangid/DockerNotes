@@ -3,6 +3,8 @@
 Read basics from this link
 https://medium.com/@kmdkhadeer/docker-get-started-9aa7ee662cea#:~:text=Docker%20is%20a%20set%20of,other%20through%20well%2Ddefined%20channels.
 
+### DOCKER CHEAT SHEET - https://www.docker.com/wp-content/uploads/2022/03/docker-cheat-sheet.pdf
+
 ## DOCKER COMMANDS
 
 ### BASIC COMMANDS
@@ -26,3 +28,72 @@ https://medium.com/@kmdkhadeer/docker-get-started-9aa7ee662cea#:~:text=Docker%20
 
 - `docker logs container_id|container_name` prints logs of the provided container
 - `docker exec -it container_id|container_name /bin/bash` gives excess to the terminal for provided container
+
+## DOCKER V/S VIRTUAL MACHINE - https://www.youtube.com/watch?v=5GanJdbHlAA
+
+## NETWORK COMMANDS
+
+- `docker network ls` - list all networks
+- `docker network network_name` - create new network with given name
+
+## NODE APP WITH DOCKER - https://www.youtube.com/watch?v=6YisG2GcXaw&list=PLy7NrYWoggjzfAHlUusx2wuDwfCrmJYcs&index=8
+
+when using any images like mongodb, you can pass environment variables as well for username and password, to do that checkout the description of the image you are using to create the conatainer
+
+example -
+
+#### start mongoDb
+
+`docker run -d -p:27017:27017 --network network_name --name container_name -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=secret mongo ` network is passed manually to make sure to run different services in same network so they can communicate directly without any need to expose ports
+
+####
+
+`docker run -d -p:27017:27017 --network network_name --name container_name -e ME_CONFIG_MONGODB_ADMINUSERNAME=mongoadmin -e ME_CONFIG_MONGODB_ADMINPASSWORD=secret mongo-express`
+
+## DOCKER COMPOSE
+
+using docker compose we can map the commands that we used earlier to a file which can be further used to create any number of containers using that blueprint
+
+example based on the above commands: this is the whole .yaml file
+
+```
+version: '3'
+services:               // list all services inside it
+    mongodb:                    // container name
+        images: mongo                   // image name
+        ports:                          // define port bindings
+            - 27017:27017
+        environment:                    // define environment variables
+            - MONGO_INITDB_ROOT_USERNAME=mongoadmin
+            - MONGO_INITDB_ROOT_PASSWORD=secret
+
+    mongo-express:
+        images: mongo-express
+        ports:
+            - 8080:8080
+        environment:
+            - ME_CONFIG_MONGODB_ADMINUSERNAME=mongoadmin
+            - ME_CONFIG_MONGODB_ADMINPASSWORD=secret
+```
+
+To create container using this
+
+`docker-compose -f filename.yaml up -d` takes filename for yaml name
+
+To stop all the containers
+
+`docker-compose -f filename.yaml down` when stopping container using docker compose it also removes the network it created at the time of creating the containers
+
+## DOCKER FILE
+
+To create the docker image we need to create a dockerfile. It acts an blueprint for creating docker images
+example:
+
+```
+FROM node           // every image is based on some base image // install node
+ENV MONGO_INITDB_ROOT_USERNAME=mongoadmin \             // define environment variables
+    MONGO_INITDB_ROOT_PASSWORD=secret
+RUN mkdir -p /home/app                              // runs this command on the container shell and creates a /home/app folder
+COPY ./home/app                                 // copy current folder files to /home/app // this executes on the host
+CMD ["node", "server.js"]                       // entry command to run when container is created successfully
+```
